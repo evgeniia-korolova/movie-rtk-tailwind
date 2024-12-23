@@ -36,6 +36,7 @@ const router = createBrowserRouter(
 		},
 	],
 	{
+		basename: '/movie-rtk-tailwind', // Укажите базовый путь
 		future: {
 			v7_relativeSplatPath: true,
 			v7_fetcherPersist: true,
