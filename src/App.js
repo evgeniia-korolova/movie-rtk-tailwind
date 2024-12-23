@@ -3,6 +3,7 @@ import './App.css';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import MobileNavigation from './components/MobileNavigation';
+import ScrollToTop from './components/ScrollToTop';
 import axios from 'axios';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
@@ -39,6 +40,7 @@ function App() {
 
 	return (
 		<main className='pb-14 lg:pb-0'>
+      <ScrollToTop />
 			<Header />
 			<div className='min-h-[70vh]'>
 				<Outlet />

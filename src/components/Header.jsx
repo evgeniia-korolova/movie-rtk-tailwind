@@ -12,8 +12,7 @@ const Header = () => {
     const [searchInput, setSearchInput] = useState(formattedQuery);
     const navigate = useNavigate();
 
-	console.log(formattedQuery);	
-	
+		
 
     useEffect(() => {
 		if(searchInput) {

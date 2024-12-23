@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import useFetchDetails from '../hooks/useFetchDetails';
 import { useSelector } from 'react-redux';
@@ -6,6 +6,7 @@ import moment from 'moment';
 import Divider from '../components/Divider';
 import useFetch from '../hooks/useFetch';
 import HorizontalScrollCard from '../components/HorizontalScrollCard';
+import VideoPlay from '../components/VideoPlay';
 
 const DetailsPage = () => {
 	const params = useParams();
@@ -20,18 +21,27 @@ const DetailsPage = () => {
 	const { data: recommendationData } = useFetch(
 		`/${params?.explore}/${params?.id}/recommendations`
 	);
+	
+	const [playVideo, setPlayVideo] = useState(false);
+	const [playVideoId, setPlayVideoId] = useState('');
 	const duration = (data?.runtime / 60)?.toFixed(1)?.split('.');
 	const director = castData?.crew
-		?.filter((el) => el?.job === 'Director' )
+		?.filter((el) => el?.job === 'Director')
 		?.map((el) => el?.name)
 		?.join(', ');
 	const writer = castData?.crew
 		?.filter((el) => el?.job === 'Writer' || el?.job === 'Story')
 		?.map((el) => el?.name)
 		?.join(', ');
-	console.log('details params', params);
-	console.log('details data', data);
-	console.log('details castData', castData);
+
+	const handlePlayVideo = (data) => {
+		setPlayVideoId(data);
+		setPlayVideo(true);
+	};
+
+	// console.log('details params', params);
+	// console.log('details data', data);
+	// console.log('details castData', castData);
 
 	return (
 		<div className='container mx-auto  mt-16 mb-24'>
@@ -51,8 +61,14 @@ const DetailsPage = () => {
 					<img
 						src={imageURL + data?.poster_path}
 						alt={data?.title}
-						className='w-60  h-80 object-contain object-left rounded'
+						className='w-60  h-80 object-cover object-center lg:object-left rounded '
 					/>
+					<button
+						onClick={() => handlePlayVideo(data)}
+						className='mt-5 w-full py-2 px-12 text-center bg-white text-black rounded font-bold text-lg hover:bg-gradient-to-l from-red-500 to-orange-500  transition-all duration-300'
+					>
+						Watch Video
+					</button>
 				</div>
 				<div className='mx-auto lg:mx-0 lg:pt-4'>
 					<h2 className='text-2xl lg:text-4xl font-bold text-white '>
@@ -94,7 +110,7 @@ const DetailsPage = () => {
 					<div>
 						<p>
 							<span className='text-white'>Director : </span>
-							{director}							
+							{director}
 						</p>
 
 						<Divider />
@@ -146,6 +162,13 @@ const DetailsPage = () => {
 					media_type={params?.explore}
 				/>
 			</div>
+			{playVideo && (
+				<VideoPlay
+					data={playVideoId}
+					close={() => setPlayVideo(false)}
+					media_type={params?.explore}
+				/>
+			)}
 		</div>
 	);
 };
