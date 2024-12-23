@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/movie-rtk-tailwind/static/css/main.5cf1943e.css",
+    "main.js": "/movie-rtk-tailwind/static/js/main.3aef7da0.js",
+    "static/media/logo.svg": "/movie-rtk-tailwind/static/media/logo.bf7f470b3821af1da7fa249c87dadea3.svg",
+    "static/media/user.svg": "/movie-rtk-tailwind/static/media/user.231bf58a8d9fd7cf3642e1737288ebf3.svg",
+    "index.html": "/movie-rtk-tailwind/index.html",
+    "main.5cf1943e.css.map": "/movie-rtk-tailwind/static/css/main.5cf1943e.css.map",
+    "main.3aef7da0.js.map": "/movie-rtk-tailwind/static/js/main.3aef7da0.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.5cf1943e.css",
+    "static/js/main.3aef7da0.js"
+  ]
+}
